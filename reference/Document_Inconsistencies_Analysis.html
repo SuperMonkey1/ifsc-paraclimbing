@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSC Document Inconsistencies Analysis</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-light: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .meta-info {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .meta-info p {
+            margin: 5px 0;
+        }
+        
+        .inconsistency {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .inconsistency-number {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .quote {
+            background-color: var(--bg-light);
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .source {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+        
+        .issue {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .issue strong {
+            color: #856404;
+        }
+        
+        .severity-high {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .severity-medium {
+            border-left: 4px solid #ffc107;
+        }
+        
+        .severity-low {
+            border-left: 4px solid #28a745;
+        }
+        
+        .summary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .summary h2 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        th {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .documents-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .document-card {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .document-card h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        
+        .document-card p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>IFSC Document Inconsistencies Analysis</h1>
+    
+    <div class="meta-info">
+        <p><strong>Analysis Date:</strong> December 2, 2025</p>
+        <p><strong>Purpose:</strong> Identify inconsistencies across IFSC regulatory documents</p>
+        <p><strong>Status:</strong> Review Required</p>
+    </div>
+    
+    <h2>Documents Reviewed</h2>
+    <div class="documents-list">
+        <div class="document-card">
+            <h4>IFSC Rules 2025</h4>
+            <p>Competition Rules v2.0, March 2025</p>
+        </div>
+        <div class="document-card">
+            <h4>Para Climbing Event Regulations</h4>
+            <p>Competition Regulations v1.0, March 2025</p>
+        </div>
+        <div class="document-card">
+            <h4>IFSC Statutes</h4>
+            <p>Adopted April 11, 2025</p>
+        </div>
+        <div class="document-card">
+            <h4>Classification Rules 2025</h4>
+            <p>Para Climbing Classification Rules, March 2025</p>
+        </div>
+        <div class="document-card">
+            <h4>World Ranking Regulations</h4>
+            <p>IFSC Para Climbing World Ranking</p>
+        </div>
+    </div>
+
+    <h2>Identified Inconsistencies</h2>
+    
+    <!-- Inconsistency 1 -->
+    <div class="inconsistency severity-high">
+        <h2><span class="inconsistency-number">1</span>Special Provisions Contradiction</h2>
+        
+        <p class="source">IFSC Rules 2025 §4.3:</p>
+        <div class="quote">
+            "Under no circumstances may the Jury President make special provisions for the benefit of an individual competitor."
+        </div>
+        
+        <p class="source">Para Climbing Event Regulations §3.1:</p>
+        <div class="quote">
+            "The Jury President may make special provisions for individual competitors only upon the written request of the Classification Panel."
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> The general rules explicitly prohibit special provisions for individuals, while the Para Climbing regulations allow them under specific circumstances. This creates a direct conflict between the two documents.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 2 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">2</span>Minimum Registration Requirements Cross-Reference Error</h2>
+        
+        <p class="source">Event Regulations §1.6 (Table 1):</p>
+        <div class="quote">
+            Para Climbing World Cup: 4 athletes minimum<br>
+            Para Climbing World Championship: 6 athletes minimum
+        </div>
+        
+        <p class="source">Event Regulations §2.1 (Annex A):</p>
+        <div class="quote">
+            References "Minimum Registration Requirements of Annex B"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> Annex A refers to "Minimum Registration Requirements of Annex B," but the minimum registration requirements are actually defined in §1.6 (Table 1) of the main regulations, not in Annex B. Annex B contains event format details, not minimum registration requirements.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 3 -->
+    <div class="inconsistency severity-low">
+        <h2><span class="inconsistency-number">3</span>Section Numbering Gap</h2>
+        
+        <p class="source">Event Regulations §3:</p>
+        <div class="quote">
+            §3.1 – Special provisions<br>
+            §3.2 – Competition Doctor (labeled as "3.5" in document)<br>
+            §3.3 – Safety Petitions
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> The section jumps from §3.2 to §3.5 in the document, skipping §3.3 and §3.4, yet §3.3 exists with "Safety Petitions." This creates numbering confusion and suggests missing or misnumbered sections.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 4 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">4</span>Successful Attempt Definition Difference</h2>
+        
+        <p class="source">IFSC Rules 2025 §8.5(B) (Boulder):</p>
+        <div class="quote">
+            A boulder attempt is successful if a climber "Controls/matches the marked finishing hold with <strong>both hands</strong>"
+        </div>
+        
+        <p class="source">Para Climbing Event Regulations Annex B §5.2 (Top-Rope):</p>
+        <div class="quote">
+            A top-rope attempt is successful if a climber "Controls the marked finishing hold with <strong>a single hand</strong>"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> While these are different disciplines (boulder vs. top-rope), the inconsistency in hand requirements for the finishing hold is not clearly explained as discipline-specific in the documents, which could cause confusion for officials and athletes.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 5 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">5</span>Appeal Time Limits Inconsistency</h2>
+        
+        <p class="source">Event Regulations §10.4:</p>
+        <div class="quote">
+            Appeals relating to Official Results must be made "immediately on publication for the medal phase" or "within 5 minutes for any other round"
+        </div>
+        
+        <p class="source">Event Regulations Annex B §9.2:</p>
+        <div class="quote">
+            Appeals relating to scoring/ranking "in the final round: immediately following publication" or "in any other round: within 5 minutes"
+        </div>
+        
+        <p class="source">Statutes §17.1:</p>
+        <div class="quote">
+            "The time limit for the appeal shall be thirty (30) days"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> The Statutes refer to 30-day appeal limits (for CAS appeals), while the competition regulations use immediate/5-minute limits. While these may apply to different types of appeals, the documents don't clearly distinguish between field-of-play appeals and statutory appeals.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 6 -->
+    <div class="inconsistency severity-low">
+        <h2><span class="inconsistency-number">6</span>Commission Terminology Variance</h2>
+        
+        <p class="source">Statutes §14.7:</p>
+        <div class="quote">
+            References "<strong>Sports</strong> and Technical Commission"
+        </div>
+        
+        <p class="source">Statutes §14.7.1:</p>
+        <div class="quote">
+            References "<strong>Sport</strong> and Technical Commission" (singular)
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> Inconsistent use of "Sports" vs. "Sport" in the commission name within the same section of the Statutes.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 7 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">7</span>Caution Accumulation Discrepancy</h2>
+        
+        <p class="source">IFSC Rules 2025 §13.1:</p>
+        <div class="quote">
+            "Receipt of two cautions in an event" leads to disqualification
+        </div>
+        
+        <p class="source">Event Regulations §9.3:</p>
+        <div class="quote">
+            "If a person receives 3 cautions in the same year, their International Licence will be suspended"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> The rules state 2 cautions in an event = disqualification, while the regulations introduce a separate "3 cautions per year = suspension" rule. These aren't contradictory but the relationship between event-level and year-level consequences isn't clearly explained.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 8 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">8</span>Classification Rules Reference to Outdated IPC Code</h2>
+        
+        <p class="source">Classification Rules §1.1:</p>
+        <div class="quote">
+            "These Classification Rules... have been prepared by the IFSC to implement the requirements of the <strong>2015 IPC Athlete Classification Code</strong>"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> The 2015 IPC Classification Code is referenced, but the IPC has since updated their classification framework. The Statutes reference the "Constitution and Regulations of the International Paralympic Committee" (current), creating a potential temporal inconsistency.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 9 -->
+    <div class="inconsistency severity-medium">
+        <h2><span class="inconsistency-number">9</span>World Ranking Combined Classes Contradiction</h2>
+        
+        <p class="source">World Ranking Regulations §2.8:</p>
+        <div class="quote">
+            "The Sport Class which will be combined into another one will not award any ranking points"
+        </div>
+        
+        <p class="source">World Ranking Regulations §2.9:</p>
+        <div class="quote">
+            "For World Ranking purposes, the ranking of Combined Sport Classes will be re-calculated to consider only the athletes from the Sport Class which meet the minimum registration requirements"
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> §2.8 says combined classes don't award points, but §2.9 implies they do (with recalculation). The relationship between these provisions is unclear and potentially contradictory.
+        </div>
+    </div>
+    
+    <!-- Inconsistency 10 -->
+    <div class="inconsistency severity-high">
+        <h2><span class="inconsistency-number">10</span>Discipline Terminology / Top-Rope Status</h2>
+        
+        <p class="source">Statutes §6.1.4:</p>
+        <div class="quote">
+            "To deliver world-class international competitions showcasing all <strong>IFSC Disciplines</strong> equally"
+        </div>
+        
+        <p class="source">IFSC Disciplines Definition (Statutes §20.1):</p>
+        <div class="quote">
+            "IFSC Disciplines means the sport disciplines governed... which include Lead, Boulder and Speed Climbing"
+        </div>
+        
+        <p class="source">Para Climbing Regulations:</p>
+        <div class="quote">
+            References "<strong>top-rope discipline</strong>" for Para Climbing events
+        </div>
+        
+        <div class="issue">
+            <strong>Issue:</strong> Top-rope is listed as a Para Climbing discipline but isn't included in the formal IFSC Disciplines definition in the Statutes, creating an inconsistency about whether top-rope is an official IFSC discipline.
+        </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="summary">
+        <h2>Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Severity</th>
+                    <th>Count</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🔴 High</td>
+                    <td>2</td>
+                    <td>Direct conflicts requiring immediate resolution</td>
+                </tr>
+                <tr>
+                    <td>🟡 Medium</td>
+                    <td>6</td>
+                    <td>Ambiguities that could affect interpretation</td>
+                </tr>
+                <tr>
+                    <td>🟢 Low</td>
+                    <td>2</td>
+                    <td>Editorial/formatting issues</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 style="margin-top: 20px;">Recommendations</h3>
+        <ol>
+            <li>Conduct a harmonization review across all IFSC regulatory documents</li>
+            <li>Clarify the relationship between general rules and Para Climbing-specific regulations</li>
+            <li>Update Classification Rules to reference current IPC Code</li>
+            <li>Add Top-rope to the formal IFSC Disciplines definition or clarify its status</li>
+            <li>Create a clear hierarchy document explaining how different regulations interact</li>
+        </ol>
+    </div>
+
+</body>
+</html>

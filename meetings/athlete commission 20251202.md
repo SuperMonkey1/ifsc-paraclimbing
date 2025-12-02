@@ -46,5 +46,6 @@ GOVERNANCE COMMISSION
 - paraclimbers commission (by far most iF's have paraclimber on executive board, also like gender)
 - do we adress the GA directly? "reports directly to the GA on specific proposals."
 
-
-
+- guide as a special athlete
+    - a guide can NOT guide multiple athletes
+    - can coach be guide

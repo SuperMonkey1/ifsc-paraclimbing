@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSC Rules 2025 - Internal Inconsistencies Analysis</title>
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --accent-color: #c0392b;
+            --warning-color: #f39c12;
+            --success-color: #27ae60;
+            --bg-light: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .meta-info p {
+            margin: 5px 0;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .category-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .category-content {
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            padding: 20px;
+        }
+        
+        .issue {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .issue:last-child {
+            margin-bottom: 0;
+        }
+        
+        .issue-number {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .issue-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: inline;
+        }
+        
+        .location {
+            display: inline-block;
+            background-color: #e8e8e8;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        .quote {
+            background-color: var(--bg-light);
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95em;
+        }
+        
+        .error-highlight {
+            background-color: #ffcccc;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .correct-highlight {
+            background-color: #ccffcc;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .explanation {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-top: 10px;
+        }
+        
+        .explanation strong {
+            color: #856404;
+        }
+        
+        .type-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .type-typo {
+            background-color: #ffcccc;
+            color: #a94442;
+        }
+        
+        .type-grammar {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+        }
+        
+        .type-inconsistency {
+            background-color: #d9edf7;
+            color: #31708f;
+        }
+        
+        .type-missing {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        
+        .type-duplicate {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .summary-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .summary-table tr:hover {
+            background-color: var(--bg-light);
+        }
+        
+        .summary-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .summary-box h2 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .nav-links {
+            margin-bottom: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--primary-color);
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>IFSC Rules 2025 - Internal Inconsistencies Analysis</h1>
+    
+    <div class="meta-info">
+        <p><strong>Document Analyzed:</strong> IFSC Competition Rules v2.0, March 2025</p>
+        <p><strong>Analysis Date:</strong> December 2, 2025</p>
+        <p><strong>Total Issues Found:</strong> 15</p>
+    </div>
+    
+    <div class="nav-links">
+        <a href="#typos">Typos &amp; Spelling</a>
+        <a href="#grammar">Grammar</a>
+        <a href="#inconsistencies">Inconsistencies</a>
+        <a href="#missing">Missing Content</a>
+        <a href="#summary">Summary Table</a>
+    </div>
+
+    <!-- TYPOS & SPELLING SECTION -->
+    <div class="category" id="typos">
+        <h2 class="category-header">🔤 Typos &amp; Spelling Errors</h2>
+        <div class="category-content">
+            
+            <div class="issue">
+                <span class="issue-number">1</span>
+                <span class="issue-title">"warn-up" instead of "warm-up"</span>
+                <span class="location">§1.2</span>
+                <span class="type-tag type-typo">Typo</span>
+                
+                <div class="quote">
+                    "competitor preparation areas (both for <span class="error-highlight">warn-up</span> and warm-down activities)"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Should be <span class="correct-highlight">warm-up</span>. The correct term is used elsewhere in the document (e.g., Official Start List definition in Glossary).
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">2</span>
+                <span class="issue-title">"hangar" instead of "hanger"</span>
+                <span class="location">§1.13, §8.1(E)</span>
+                <span class="type-tag type-typo">Spelling</span>
+                
+                <div class="quote">
+                    §1.13: "bolt <span class="error-highlight">hangar</span>"<br>
+                    §8.1(E): "bolt <span class="error-highlight">hangars</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> "Hangar" refers to aircraft storage. The correct climbing term is <span class="correct-highlight">hanger</span> (something that hangs/holds the quickdraw).
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">3</span>
+                <span class="issue-title">Spurious "`z" character</span>
+                <span class="location">Note 17</span>
+                <span class="type-tag type-typo">Typo</span>
+                
+                <div class="quote">
+                    "it became unclipped due to factors outside the competitor's control.<span class="error-highlight">`z</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Remove the spurious "<span class="error-highlight">`z</span>" characters at the end of the sentence.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">4</span>
+                <span class="issue-title">"barking" instead of "marking"</span>
+                <span class="location">Note 5</span>
+                <span class="type-tag type-typo">Typo</span>
+                
+                <div class="quote">
+                    "If any holds or parts of the climbing surface are marked out of bounds by a boundary <span class="error-highlight">barking</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Should be <span class="correct-highlight">boundary marking</span>.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">5</span>
+                <span class="issue-title">Double period</span>
+                <span class="location">§12.7</span>
+                <span class="type-tag type-typo">Punctuation</span>
+                
+                <div class="quote">
+                    "other than as allowed under the IFSC Disciplinary Rules<span class="error-highlight">..</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Remove one period.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">6</span>
+                <span class="issue-title">Missing closing bracket</span>
+                <span class="location">Note 32</span>
+                <span class="type-tag type-typo">Punctuation</span>
+                
+                <div class="quote">
+                    "<span class="error-highlight">[Sterrer, Shanghai/2024,</span> [Avezou, Paris/2024]."
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Should be <span class="correct-highlight">[Sterrer, Shanghai/2024], [Avezou, Paris/2024]</span> - add closing bracket after "2024".
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- GRAMMAR SECTION -->
+    <div class="category" id="grammar">
+        <h2 class="category-header">📝 Grammar Issues</h2>
+        <div class="category-content">
+            
+            <div class="issue">
+                <span class="issue-number">7</span>
+                <span class="issue-title">"a scoring attempts" - article/number disagreement</span>
+                <span class="location">§6.4, §6.7</span>
+                <span class="type-tag type-grammar">Grammar</span>
+                
+                <div class="quote">
+                    §6.4: "will not count as <span class="error-highlight">a scoring attempts</span>"<br>
+                    §6.7: "will not count as <span class="error-highlight">a scoring attempts</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Should be either <span class="correct-highlight">a scoring attempt</span> (singular) or <span class="correct-highlight">scoring attempts</span> (plural without article).
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">8</span>
+                <span class="issue-title">"effected" instead of "affected"</span>
+                <span class="location">§11.3</span>
+                <span class="type-tag type-grammar">Grammar</span>
+                
+                <div class="quote">
+                    "a potential or confirmed Technical Incident that adversely <span class="error-highlight">effected</span> their attempt"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Should be <span class="correct-highlight">affected</span> (to have an impact on). "Effected" means "to bring about/cause."
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">9</span>
+                <span class="issue-title">Incomplete sentence ending with colon</span>
+                <span class="location">§13.3</span>
+                <span class="type-tag type-grammar">Incomplete</span>
+                
+                <div class="quote">
+                    "The imposition of a sanction will be accompanied by showing a Yellow Card (for a caution) and/or a Red Card (for a disqualification)<span class="error-highlight">:</span>"
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> The sentence ends with a colon but nothing follows. Either content is missing after the colon, or the colon should be replaced with a period.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- INCONSISTENCIES SECTION -->
+    <div class="category" id="inconsistencies">
+        <h2 class="category-header">⚠️ Internal Inconsistencies</h2>
+        <div class="category-content">
+            
+            <div class="issue">
+                <span class="issue-number">10</span>
+                <span class="issue-title">"Route Setter" vs "Routesetter" spelling</span>
+                <span class="location">§1.8 vs Glossary</span>
+                <span class="type-tag type-inconsistency">Inconsistency</span>
+                
+                <div class="quote">
+                    §1.8: "Head <span class="error-highlight">Route Setter</span>" (two words)<br>
+                    Glossary (Last Clipping Position): "Head <span class="error-highlight">Routesetter</span>" (one word)
+                </div>
+                
+                <div class="explanation">
+                    <strong>Fix:</strong> Choose one spelling and apply consistently throughout the document.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">11</span>
+                <span class="issue-title">Competition Area definition mismatch</span>
+                <span class="location">§1.2 vs Glossary</span>
+                <span class="type-tag type-inconsistency">Inconsistency</span>
+                
+                <div class="quote">
+                    <strong>§1.2:</strong> "encompasses the Field of Play together with any off-field holding areas (e.g. Call Zones) and transits, technical areas, competitor preparation areas..."<br><br>
+                    <strong>Glossary:</strong> Lists "for use by technical officials," "for athletic warm-up/warm-down," and "as Call Zones and transits..."
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> The main text and glossary definitions don't match exactly. The glossary doesn't explicitly mention "competitor preparation areas" and adds "recovery" areas not in the main text.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">12</span>
+                <span class="issue-title">Duplicate note content</span>
+                <span class="location">Note 6 and Note 10</span>
+                <span class="type-tag type-duplicate">Duplication</span>
+                
+                <div class="quote">
+                    <strong>Note 6:</strong> "The transfer of chalk residue from the hands, which occurs naturally during climbing, is not considered a violation of this rule."<br><br>
+                    <strong>Note 10:</strong> "The transfer of chalk residue from the hands, which occurs naturally during climbing, is not considered a violation of this rule."
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> Identical text appears in two different notes. While they reference different rules (§3.4(A) and §5.2(B)), the duplication could be consolidated with a cross-reference.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- MISSING CONTENT SECTION -->
+    <div class="category" id="missing">
+        <h2 class="category-header">❌ Missing or Incomplete Content</h2>
+        <div class="category-content">
+            
+            <div class="issue">
+                <span class="issue-number">13</span>
+                <span class="issue-title">Section title mentions "Protests" but content only covers "Appeals"</span>
+                <span class="location">§12</span>
+                <span class="type-tag type-missing">Missing Content</span>
+                
+                <div class="quote">
+                    <strong>Section Title:</strong> "PROTESTS AND APPEALS"<br>
+                    <strong>Content:</strong> §12.1-12.7 only describe appeals procedures
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> The title suggests two distinct processes (protests AND appeals), but the section only defines and describes the appeals process. Either the title should be changed to just "APPEALS" or protest procedures need to be added.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">14</span>
+                <span class="issue-title">No False Start definition for Lead discipline</span>
+                <span class="location">Glossary</span>
+                <span class="type-tag type-missing">Gap</span>
+                
+                <div class="quote">
+                    "False Start has the meaning given in §7.3 and §7.5."
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> §7.3 defines False Start for Speed, §7.5 defines it for Boulder, but there's no False Start definition for Lead (§7.1 just says "when a climber leaves the ground"). This could create ambiguity about whether False Starts can occur in Lead climbing.
+                </div>
+            </div>
+            
+            <div class="issue">
+                <span class="issue-number">15</span>
+                <span class="issue-title">Head Route Setter role not formally defined</span>
+                <span class="location">§4</span>
+                <span class="type-tag type-missing">Missing Definition</span>
+                
+                <div class="quote">
+                    The "Head Route Setter" is referenced in:<br>
+                    • §1.8 - adjusting boulder design<br>
+                    • §4.2 - consultation on safety decisions<br>
+                    • §11.2 - consultation on Technical Incidents<br>
+                    • Glossary - ruling on clipping positions
+                </div>
+                
+                <div class="explanation">
+                    <strong>Issue:</strong> The Head Route Setter is given significant authority throughout the document but is never formally defined in the Technical Officials section (§4). There's no indication of their qualifications, appointment process, or formal scope of authority.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <h2 id="summary">Summary Table</h2>
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Issue</th>
+                <th>Severity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Typo</td>
+                <td>§1.2</td>
+                <td>"warn-up" → "warm-up"</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Spelling</td>
+                <td>§1.13, §8.1(E)</td>
+                <td>"hangar" → "hanger"</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Typo</td>
+                <td>Note 17</td>
+                <td>Spurious "`z" characters</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Typo</td>
+                <td>Note 5</td>
+                <td>"barking" → "marking"</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Punctuation</td>
+                <td>§12.7</td>
+                <td>Double period</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Punctuation</td>
+                <td>Note 32</td>
+                <td>Missing closing bracket</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Grammar</td>
+                <td>§6.4, §6.7</td>
+                <td>"a scoring attempts"</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Grammar</td>
+                <td>§11.3</td>
+                <td>"effected" → "affected"</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Incomplete</td>
+                <td>§13.3</td>
+                <td>Sentence ends with colon</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Inconsistency</td>
+                <td>§1.8, Glossary</td>
+                <td>"Route Setter" vs "Routesetter"</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Inconsistency</td>
+                <td>§1.2, Glossary</td>
+                <td>Competition Area definitions differ</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Duplication</td>
+                <td>Notes 6, 10</td>
+                <td>Identical note content</td>
+                <td>🟢 Low</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Missing</td>
+                <td>§12</td>
+                <td>"Protests" in title but not defined</td>
+                <td>🔴 High</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Gap</td>
+                <td>Glossary</td>
+                <td>No False Start for Lead</td>
+                <td>🟡 Medium</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Missing</td>
+                <td>§4</td>
+                <td>Head Route Setter not defined</td>
+                <td>🔴 High</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- SUMMARY BOX -->
+    <div class="summary-box">
+        <h2>Analysis Summary</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Total Issues</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Typos/Spelling</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Grammar</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Inconsistencies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Missing Content</div>
+            </div>
+        </div>
+        
+        <h3>Recommendations</h3>
+        <ol>
+            <li><strong>Immediate fixes:</strong> Correct all typos and spelling errors (items 1-6)</li>
+            <li><strong>Grammar review:</strong> Fix article/number agreement and word choice errors (items 7-9)</li>
+            <li><strong>Standardization:</strong> Choose consistent spelling for "Route Setter/Routesetter" and align definitions</li>
+            <li><strong>Content addition:</strong> Either remove "Protests" from §12 title or add protest procedures</li>
+            <li><strong>Definition needed:</strong> Add formal definition of Head Route Setter role in Technical Officials section</li>
+            <li><strong>Clarification:</strong> Address whether False Starts can occur in Lead discipline</li>
+        </ol>
+    </div>
+
+</body>
+</html>
