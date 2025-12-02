@@ -1,19 +1,35 @@
 import markdown
 import os
+import glob
 
-# Read the markdown file
-with open('c:/PYTHON/ifsc-paraclimbing/VI_Requests_Rule_Changes.md', 'r', encoding='utf-8') as f:
-    md_content = f.read()
+# Define the Requests folder path
+requests_folder = 'c:/PYTHON/ifsc-paraclimbing/Requests'
 
-# Convert to HTML with tables extension
-html_content = markdown.markdown(md_content, extensions=['tables', 'fenced_code'])
+# Find all markdown files in the Requests folder
+md_files = glob.glob(os.path.join(requests_folder, '*.md'))
 
-# Create styled HTML
-styled_html = f'''<!DOCTYPE html>
+if not md_files:
+    print('No markdown files found in Requests folder.')
+else:
+    print(f'Found {len(md_files)} markdown file(s) to convert.')
+
+for md_file in md_files:
+    # Read the markdown file
+    with open(md_file, 'r', encoding='utf-8') as f:
+        md_content = f.read()
+    
+    # Get the base filename for the title
+    base_name = os.path.splitext(os.path.basename(md_file))[0]
+    
+    # Convert to HTML with tables extension
+    html_content = markdown.markdown(md_content, extensions=['tables', 'fenced_code'])
+    
+    # Create styled HTML
+    styled_html = f'''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>VI Climber Requests - Rule Changes Required</title>
+    <title>{base_name}</title>
     <style>
         body {{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -80,10 +96,14 @@ styled_html = f'''<!DOCTYPE html>
 {html_content}
 </body>
 </html>'''
+    
+    # Create output HTML path
+    html_output = os.path.splitext(md_file)[0] + '.html'
+    
+    # Save as HTML
+    with open(html_output, 'w', encoding='utf-8') as f:
+        f.write(styled_html)
+    
+    print(f'Created: {html_output}')
 
-# Save as HTML
-with open('c:/PYTHON/ifsc-paraclimbing/VI_Requests_Rule_Changes.html', 'w', encoding='utf-8') as f:
-    f.write(styled_html)
-
-print('Created: VI_Requests_Rule_Changes.html')
-print('You can open this in a browser and print to PDF (Ctrl+P -> Save as PDF)')
+print('\nDone! You can open HTML files in a browser and print to PDF (Ctrl+P -> Save as PDF)')
