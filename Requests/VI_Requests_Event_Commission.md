@@ -150,20 +150,8 @@ In final rounds, a picture of the route is displayed in isolation for finalists 
 
 ---
 
-## Rationale
-
-These changes to the Competition Regulations would:
-1. **Improve preparation equity** - VI athletes and their guides can adequately prepare when routes are scheduled early
-2. **Enable partnership coordination** - Allows time for athlete-guide route review sessions
-3. **Provide consistency** - All athletes benefit from predictable video release schedules
-4. **Improve competition safety and fairness** - Guides can monitor time effectively during climbs
-5. **Enable independent access** - VI athletes can review competition documents using screen readers
-6. **Remove unfair disadvantage** - VI athletes are not penalised for inadvertent bolt contact they cannot see
-7. **Improve route study accessibility** - Larger, clearer images benefit VI athletes with partial sight
-
----
 
 ## Contact
 
 For questions regarding these requests, please contact:
-- **Frederik Leys** - Para Climbing Athletes Representative and Athletes Representative
+- **Frederik (Fré) Leys** - Para Climbing Athletes Representative and Athletes Representative
