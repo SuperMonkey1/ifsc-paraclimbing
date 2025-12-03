@@ -1,48 +1,11 @@
 # VI Climber Requests - Rule Changes Required (Consolidated)
 
 **Date:** November 30, 2025  
-**Prepared by:** Frederik Leys, Para Climber Athlete Representative
+**Prepared by:** Corinna Wimmer & Frederik Leys, Athlete Representatives
 
 ---
 
-## Request 1: Clock Positioning for VI Guides
-
-### Current State
-**Document:** Competition Regulations Para Climbing Events 2025, Annex B, Section 6.1
-
-> "A timing system should be used in the final rounds to display, for both the public and competitors, the remaining time in the collective or individual observation/preparation periods, as well as the remaining climbing time."
-
-**Problem:** Clock positioning only mentions "public and competitors." VI guides need to see timing while guiding but current clocks face the wall (for sighted climbers looking down). No provision for guide visibility.
-
-### Required Update
-**Amend Competition Regulations Para Climbing Events 2025, Annex B, Section 6 - Add new section 6.2:**
-
-> **6.2** For events including B1, B2 or B3 Sport Classes, a secondary timing display shall be positioned at the base of the climbing wall, oriented toward the competition floor, allowing sight guides to monitor remaining climbing time from their guiding position. This display must be synchronized with the primary timing system.
-
----
-
-## Request 2: Accessible Document Formats for VI Athletes
-
-### Current State
-**Document:** Various IFSC Official Documents (Rules, Regulations, Guidelines)
-
-> All official IFSC documents are distributed exclusively in PDF format via the IFSC website.
-
-**Problem:** PDF documents are not optimized for screen readers, which are the primary tool VI climbers use to access written information. Current PDFs often lack proper heading structure, alt text for images, tagged content, and reading order—making them difficult or impossible for athletes in B1, B2, and B3 Sport Classes to independently review competition rules, classification requirements, and event information.
-
-### Required Update
-**Amend IFSC Communications/Publications Policy - Add accessibility requirement:**
-
-> All official IFSC documents intended for athlete use shall be made available in accessible formats alongside the standard PDF version. This includes:
-> - Tagged PDF documents with proper reading order and heading structure
-> - Alternative formats such as accessible HTML or plain text versions
-> - Images and diagrams shall include descriptive alt text
-> 
-> The IFSC shall ensure that new documents meet WCAG 2.1 Level AA accessibility standards prior to publication.
-
----
-
-## Request 3: Formal Recognition of VI Guide Status
+## Request: Formal Recognition of VI Guide Status
 
 ### Current State
 **Documents:** 
