@@ -88,6 +88,56 @@ PDF documents are not optimized for screen readers, which are the primary tool V
 
 ---
 
+## Request 4: Bolt Covers or Modified Bolt Contact Rules for VI Athletes
+
+### Current State
+**Document:** IFSC Rules 2025, Section 8.1.E
+
+> "An attempt will be ruled unsuccessful if a climber... has gained an advantage by using the climbing rope/lanyard or other safety equipment (including quickdraws or bolt hangars), any open edges to the climbing surface, any placards on the climbing surface, or (with the hands) any unused/unplugged T-Nut emplacements."
+
+### Problem
+On most climbing walls, bolts (used to attach quickdraws) remain in place even when quickdraws are removed during competitions. Climbers are not allowed to touch or use these bolts. However, this is particularly difficult for VI athletes (visually impaired) who cannot see the bolts and may inadvertently touch them while climbing.
+
+A solution currently applied at some events—for all climbers, not just para climbers—is the use of "bolt covers." These are placed over the bolts to prevent any climber from gaining an advantage by touching or using a bolt. However, bolt covers are not always available or required.
+
+### Required Update
+Two alternative solutions are proposed:
+
+**Option A: Mandatory Bolt Covers (Preferred)**
+
+**Amend IFSC Rules 2025, Section 1 (Route Setting) or Competition Regulations Para Climbing Events 2025, Annex B - Add new requirement:**
+
+> For all Para Climbing events, bolt covers shall be installed on all bolt hangars on competition routes. Bolt covers must fully obscure the bolt hangar to prevent any advantage being gained from contact.
+
+**Option B: Modified Contact Rules for VI Athletes**
+
+**Amend IFSC Rules 2025, Section 8.1.E - Add clarification for VI Sport Classes:**
+
+> For athletes competing in B1, B2 or B3 Sport Classes, incidental contact with bolt hangars shall not be ruled as gaining an advantage. Only deliberate use of bolt hangars with the hands (e.g., gripping, pulling, or resting on a bolt hangar) shall result in the attempt being ruled unsuccessful.
+
+**Note:** Option A (mandatory bolt covers) is preferred as it provides a consistent solution for all athletes and removes any ambiguity in judging. This request may fall under Rules Commission jurisdiction but has significant Event Commission implications for venue requirements.
+
+---
+
+## Request 5: Route Image Size and Quality in Isolation/Warm-Up Area
+
+### Current State
+**Document:** Competition Regulations Para Climbing Events 2025, Annex B, Section 4.10
+
+> "The Jury President will arrange for images of the route to be placed in the warm-up area when it opens. Only images of the route provided by the event organiser and approved by the Jury President may be brought into the warm-up area."
+
+### Problem
+In final rounds, a picture of the route is displayed in isolation for finalists to study. These images are often printed in poor quality on A4 paper. While this creates equal (albeit suboptimal) conditions for sighted athletes, it creates an unfair disadvantage for VI athletes with partial sight (B2 and B3 Sport Classes) who may have sufficient vision to study a larger, clearer image but cannot effectively use a small, low-quality A4 print.
+
+### Required Update
+**Amend Competition Regulations Para Climbing Events 2025, Annex B, Section 4.10:**
+
+> **4.10** The Jury President will arrange for images of the route to be placed in the warm-up area when it opens. Only images of the route provided by the event organiser and approved by the Jury President may be brought into the warm-up area.
+>
+> **4.10.1** Route images displayed in the warm-up area shall be printed at a minimum size of A3 (or two A4 sheets joined together) and produced at high print quality to ensure clarity of holds and route features. This requirement applies to all Para Climbing events.
+
+---
+
 ## Summary Table
 
 | Request | Current Section | Proposed Amendment | Change Type |
@@ -95,6 +145,8 @@ PDF documents are not optimized for screen readers, which are the primary tool V
 | 1. Route Preview Video Timing | Annex B §4.7 | Amend existing + add §4.7.1 | Amendment + New subsection |
 | 2. Clock Position for VI Guides | Annex B §6.1 | Add new §6.2 | New section |
 | 3. Accessible Document Formats | N/A (New Policy) | Add accessibility requirement | New requirement |
+| 4. Bolt Covers / Contact Rules | IFSC Rules §8.1.E | Mandatory bolt covers OR modified contact rules | New requirement OR Amendment |
+| 5. Route Image Size and Quality | Annex B §4.10 | Add §4.10.1 | New subsection |
 
 ---
 
@@ -106,6 +158,8 @@ These changes to the Competition Regulations would:
 3. **Provide consistency** - All athletes benefit from predictable video release schedules
 4. **Improve competition safety and fairness** - Guides can monitor time effectively during climbs
 5. **Enable independent access** - VI athletes can review competition documents using screen readers
+6. **Remove unfair disadvantage** - VI athletes are not penalised for inadvertent bolt contact they cannot see
+7. **Improve route study accessibility** - Larger, clearer images benefit VI athletes with partial sight
 
 ---
 
